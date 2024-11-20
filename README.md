@@ -29,6 +29,7 @@ do_exit
 ./get_ftrace.sh do_exit1
 
 ### test result
+```
 24213        procTest2-2260    [001] ..... 17499.596429: __arm64_sys_exit_group+0x4/0x20       <-invoke_syscall+0x50/0x120
 24214        procTest2-2260    [001] ..... 17499.596436: <stack trace>
 24215  => __arm64_sys_exit_group+0x8/0x20
@@ -49,8 +50,10 @@ do_exit
 24230  => el0_svc+0x2c/0x84
 24231  => el0t_64_sync_handler+0xb8/0xc0
 24232  => el0t_64_sync+0x18c/0x190
+```
 
 ### addition information
+```
 // At project/linuxSrc/out folder, input 'objdump -D vmlinux > tmp.txt
  151383 ffffffc0080911a0 <__arm64_sys_exit_group>:
  151384 ffffffc0080911a0:       d503201f        nop
@@ -67,6 +70,7 @@ do_exit
 
 // '__wake_up_parent' is equal to 'do_group_exit'
 //Needed to -4byte at arm core
+```
 
 # In kernel level
 
@@ -78,6 +82,7 @@ kill -9 PID
 ./get_ftrace.sh do_exit2
 
 ### test result
+```
  7977         procTest-2340    [001] ..... 19503.269362: do_exit+0x4/0x9a4 <-do_group_exit+0x3c/0xa0
  7978         procTest-2340    [001] ..... 19503.269370: <stack trace>
  7979  => do_exit+0x8/0x9a4
@@ -87,6 +92,7 @@ kill -9 PID
  7983  => el0_svc+0x74/0x84
  7984  => el0t_64_sync_handler+0xb8/0xc0
  7985  => el0t_64_sync+0x18c/0x190
+ ```
 
 # After do_exit
  __schedule()
